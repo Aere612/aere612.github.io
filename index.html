@@ -245,6 +245,92 @@
         100% { transform: translateX(-50%) scale(1); }
     }
 
+    .projects-section {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+    .projects-section h2 {
+        font-size: 32px;
+        margin-bottom: 50px;
+    }
+
+    .sphere-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+
+    .sphere {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #444, #111);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        padding: 20px;
+    }
+
+    .sphere:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px rgba(255,255,255,0.3);
+    }
+
+    .sphere img {
+        width: 60px;
+        margin-bottom: 10px;
+    }
+
+    .sphere h3 {
+        margin: 5px 0;
+    }
+
+    .sphere p {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+
+
+    /* LINK CARDS */
+
+    .links-section {
+        display: flex;
+        margin-top: 80px;
+    }
+
+    .link-card {
+        position: relative;
+        width: 50%;
+        height: 250px;
+        overflow: hidden;
+        text-decoration: none;
+    }
+
+    .link-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .link-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: white;
+    }
+
 </style>
 </head>
 
@@ -408,10 +494,70 @@
             </div>
         </div>
         <div class="circle"><img src="images/Future.jpg"></div>
+                <div class="tutorial-hint">
+            <div>Hover to enlarge</div>
+
+  
         <div class="right"></div>
     </div>
+    <footer style="text-align:center; padding:40px; margin-top:60px; border-top:1px solid #333;">
+    <h3>Explore More</h3>
+    
+    <div style="margin-top:20px;">
+        <a href="https://aere612.itch.io" target="_blank" 
+           style="margin:10px; padding:12px 20px; display:inline-block; background:#ff4d4d; color:white; text-decoration:none; border-radius:8px;">
+            My itch.io Projects
+        </a>
 
+        <a href="https://github.com/aere612" target="_blank" 
+           style="margin:10px; padding:12px 20px; display:inline-block; background:#333; color:white; text-decoration:none; border-radius:8px;">
+            My GitHub (Work in Progress)
+        </a>
+    </div>
+</footer>
 </div>
+<section class="projects-section">
+    <h2>Featured Projects</h2>
 
+    <div class="sphere-container">
+        
+        <div class="sphere">
+            <img src="project1.png" alt="">
+            <h3>Project One</h3>
+            <p>Short description of your best project.</p>
+        </div>
+
+        <div class="sphere">
+            <img src="project2.png" alt="">
+            <h3>Project Two</h3>
+            <p>Another strong project highlight.</p>
+        </div>
+
+        <div class="sphere">
+            <img src="project3.png" alt="">
+            <h3>Project Three</h3>
+            <p>Something unique or experimental.</p>
+        </div>
+
+    </div>
+</section>
+
+    <section class="links-section">
+
+        <a href="https://aere612.itch.io" target="_blank" class="link-card">
+            <img src="itch-banner.png" alt="">
+            <div class="overlay">
+                <h3>Personal / Jam Projects</h3>
+            </div>
+        </a>
+
+        <a href="https://github.com/aere612" target="_blank" class="link-card">
+            <img src="github-banner.png" alt="">
+            <div class="overlay">
+                <h3>Professional / In Development</h3>
+            </div>
+        </a>
+
+    </section>
 </body>
 </html>
