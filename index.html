@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Timeline</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f0f0f;
+        color: #fff;
+    }
+
+    .header {
+        text-align: center;
+        padding: 40px 20px 20px;
+    }
+
+    .profile-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #333;
+        display: block;
+        margin: 0 auto 15px;
+        object-fit: cover;
+    }
+
+    .name {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .description {
+        max-width: 600px;
+        margin: 15px auto 40px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ccc;
+    }
+
+    .divider {
+        width: 60%;
+        height: 2px;
+        margin: 20px auto 0;
+        background: linear-gradient(to right, transparent, #666, transparent);
+        border-radius: 2px;
+    }
+
+    /* TIMELINE */
+    .timeline-container {
+        position: relative;
+        padding: 40px 0;
+        overflow: visible;
+    }
+
+    .timeline-container::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #444;
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 0;
+    }
+
+    .left {
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 80px;
+        box-sizing: border-box;
+    }
+
+    .right {
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 80px;
+        box-sizing: border-box;
+    }
+
+    .event-box {
+        background: #1a1a1a;
+        padding: 15px 25px;
+        border-radius: 8px;
+        max-width: 420px;
+        box-sizing: border-box;
+    }
+
+    .event-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .event-desc {
+        font-size: 13px;
+        color: #bbb;
+    }
+
+    /* ===================== */
+    /* 🔥 CIRCLE */
+    /* ===================== */
+
+    .circle {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #222;
+        border: 3px solid #888;
+        overflow: hidden;
+        z-index: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .circle:hover {
+        width: 400px;
+        height: 400px;
+        border-radius: 20px;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .circle:hover img {
+        object-fit: contain;
+        background: #000;
+    }
+
+    /* ===================== */
+    /* 🎓 TUTORIAL SYSTEM */
+    /* ===================== */
+
+    .tutorial-target {
+        animation: pulse 2s infinite;
+    }
+
+    .tutorial-hint {
+        position: absolute;
+        left: calc(60% + 0px); /* push to right of circle */
+        top: 50%;
+        transform: translateY(-50%);
+    
+        width: 220px;
+        color: #aaa;
+        font-size: 14px;
+
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards 0.5s;
+        pointer-events: none;
+    }
+
+    .tutorial-arrow {
+        width: 200px;
+        height: 100px;
+    }
+
+    .arrow-path {
+        fill: none;
+        stroke: #888;
+        stroke-width: 2;
+
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+        animation: drawArrow 1.5s ease forwards 0.8s;
+    }
+
+    .arrow-head {
+        fill: #888;
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards 1.8s;
+    }
+
+    /* ===================== */
+    /* 📱 MOBILE */
+    /* ===================== */
+
+    @media (max-width: 768px) {
+        .timeline-item {
+            flex-direction: column;
+        }
+
+        .left, .right {
+            width: 100%;
+            padding: 0;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .circle {
+            position: relative;
+            transform: none;
+            margin: 20px auto;
+        }
+
+        .tutorial-hint {
+            position: relative;
+            left: auto;
+            top: auto;
+            margin: 10px auto;
+            text-align: center;
+        }
+    }
+
+    /* ===================== */
+    /* ✨ ANIMATIONS */
+    /* ===================== */
+
+    @keyframes drawArrow {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulse {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.08); }
+        100% { transform: translateX(-50%) scale(1); }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img class="profile-img" src="images/Me.jpg">
+    <div class="name">Ali Eren Aydın</div>
+
+    <div class="description">
+        Welcome! I am a game developer from Turkey. 
+        <br>Come, join me in a small adventure in my past.
+    </div>
+
+    <div class="divider"></div>
+</div>
+
+<div class="timeline-container">
+
+    <!-- FIRST ITEM (TUTORIAL) -->
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">My Birth</div>
+                <div class="event-desc">Well, every story has a start. I was born in June 27, 2002.</div>
+            </div>
+        </div>
+
+        <div class="circle tutorial-target">
+            <img src="images/Birth.jpg">
+        </div>
+
+        <div class="tutorial-hint">
+            <div>Hover to enlarge</div>
+
+            <svg class="tutorial-arrow" viewBox="50 0 200 120">
+                <defs>
+                    <marker id="arrowHead" markerWidth="10" markerHeight="10"
+                            refX="6" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#888"/>
+                    </marker>
+                </defs>
+
+                <path class="arrow-path"
+                      d="M180,60 C120,40 80,60 40,60"
+                      marker-end="url(#arrowHead)" />
+            </svg>
+        </div>
+
+        <div class="right"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left"></div>
+        <div class="circle"><img src="images/Chess.jpg"></div>
+        <div class="right">
+            <div class="event-box">
+                <div class="event-title">My "Chessventure"</div>
+                <div class="event-desc">I played professional chess during all my childhood. I was the first place winner in age groups at my 10.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">First Unity</div>
+                <div class="event-desc">In highschool at a science fair I prepared a battleground simulation in unity to showcase applications of John Nash's game theory.</div>
+            </div>
+        </div>
+        <div class="circle"><img src="images/GameTheory.jpg"></div>
+        <div class="right"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left"></div>
+        <div class="circle"><img src="images/Academic.jpg"></div>
+        <div class="right">
+            <div class="event-box">
+                <div class="event-title">Academic Life</div>
+                <div class="event-desc">I attended to Uludag University, Computer Engineering. I successfully graduated at 2024 summer with 3.07/4 GANO (GPA)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">First Game Jam</div>
+                <div class="event-desc">At university, one of my friends suddenly invited me to a gamejam. Never have been fully developed a game before, I immediately accepted. We could not come up with a proper 3d game in time ( yes we tried to do a 3d game :') ). But the experience reignited my spark for game development that have been waiting since my highschool science fair.</div>
+            </div>
+        </div>
+        <div class="circle"><img src="images/FirstGameJam.jpg"></div>
+        <div class="right"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left"></div>
+        <div class="circle"><img src="images/ShiftO.jpg"></div>
+        <div class="right">
+            <div class="event-box">
+                <div class="event-title">ShiftO</div>
+                <div class="event-desc">We created a multi universtational group for game development. Attended jam, created games, studied game programming together. Early years of my game development came from this grop and my friends. We all teached each other what we learned in that pre-AI era.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">ULUDOTT</div>
+                <div class="event-desc">We founded a game development student club at university, named Uludağ Üniversitesi Dijital Oyun Tasarım Topluluğu. (Uludag University Digital Game Development Club). We first teached new comers how to develop games, and than put them in project groups where they can together develop new ones. I teached C# and Unity lessons there personally as well. Also managing project groups and seeing student creating new games was an amazing experience. At the second year of the club we made an national game jam, ULUJAM.</div>
+            </div>
+        </div>
+        <div class="circle"><img src="images/ULUDOTT.jpg"></div>
+        <div class="right"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left"></div>
+        <div class="circle"><img src="images/Work.jpg"></div>
+        <div class="right">
+            <div class="event-box">
+                <div class="event-title">My First Work Life</div>
+                <div class="event-desc">I applied to an internship that came to ULUDOTT from Megafortuna. 
+                Following my internship, I was hired as a Junior Mobile Game Developer. 
+                Over a total of two years of internship and employment, I developed more than 15 games, including various match-3 titles and even a Zuma-style game.
+                During this time, I gained hands-on experience with SDK integration, Git, version control systems, and working within a professional team environment under deadlines. 
+                I also learned how to prepare and present quarterly reports to executives.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">Mandatory Military Service</div>
+                <div class="event-desc">I took a break from game development and proudly served my duty to my country.</div>
+            </div>
+        </div>
+        <div class="circle"><img src="images/Military.jpg"></div>
+        <div class="right"></div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left"></div>
+        <div class="circle"><img src="images/Deftoreum.jpg"></div>
+        <div class="right">
+            <div class="event-box">
+                <div class="event-title">Deftoreum</div>
+                <div class="event-desc">Currently I am solo developing an indie game to publish on steam. As more details comes out I will be adding them here.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-item">
+        <div class="left">
+            <div class="event-box">
+                <div class="event-title">Future</div>
+                <div class="event-desc">While developing new games I started working on my chess again. I am open to work and new projects. I also play games a lot lol you can contact me for anything really. That's it for now about me. Thank you for joining me in this small trip down to the memory lane. See you around! <br><br>My Contacts: <br>Mail: aere612@gmail.com <br>Phone: +90 (539) 840 03 99 <br>Itch.io: https://aere612.itch.io/ <br>Github: https://github.com/Aere612 <br>Steam: https://steamcommunity.com/id/Aere612/</div>
+            </div>
+        </div>
+        <div class="circle"><img src="images/Future.jpg"></div>
+        <div class="right"></div>
+    </div>
+
+</div>
+
+</body>
+</html>
