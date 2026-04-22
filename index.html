@@ -417,6 +417,24 @@
         border-top: 14px solid #888;
     }
 
+    .links-section {
+        display: flex;
+        margin-top: 80px;
+        position: relative;
+    }
+
+    .links-section::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        bottom: 20px;
+
+        width: 1px;
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(-50%);
+    }
+
 </style>
 </head>
 
