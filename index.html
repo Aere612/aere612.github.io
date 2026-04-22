@@ -331,6 +331,76 @@
         color: white;
     }
 
+    .footer-cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: #111;
+    }
+
+    .footer-cta h2 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .footer-cta p {
+        margin-top: 10px;
+        color: #aaa;
+    }
+
+.timeline-container::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 50px;
+    width: 4px;
+    background: #444;
+    transform: translateX(-50%);
+}
+
+    /* TOP START DOT */
+    .timeline-container::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        width: 14px;
+        height: 14px;
+        background: #888;
+        border-radius: 50%;
+    }
+
+    /* BOTTOM ARROW */
+    .timeline-end {
+        position: relative;
+        height: 60px;
+    }
+
+    .timeline-end::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 60px;
+        background: #444;
+    }
+
+    .timeline-end::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 10px);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 14px solid #888;
+    }
+
 </style>
 </head>
 
@@ -496,6 +566,8 @@
         <div class="circle"><img src="images/Future.jpg"></div>
         <div class="right"></div>
     </div>
+
+    <div class="timeline-end"></div>
 </div>
 
 <footer class="footer-cta">
