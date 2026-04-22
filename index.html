@@ -669,21 +669,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!circle || !hint) return;
 
-    // session-based check (resets when tab closes)
-    if (sessionStorage.getItem("tutorialSeen") === "true") {
-        hint.remove();
-        circle.classList.remove("tutorial-target");
-        return;
-    }
-
-    let triggered = false;
+    let tutorialHidden = false;
 
     function hideTutorial() {
-        if (triggered) return;
-        triggered = true;
-
-        // ONLY for this tab session
-        sessionStorage.setItem("tutorialSeen", "true");
+        if (tutorialHidden) return;
+        tutorialHidden = true;
 
         hint.style.transition = "opacity 0.4s ease";
         hint.style.opacity = "0";
@@ -696,7 +686,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     circle.addEventListener("mouseover", hideTutorial);
-
 });
 </script>
 </body>
