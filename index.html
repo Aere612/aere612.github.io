@@ -347,16 +347,16 @@
         color: #aaa;
     }
 
-.timeline-container::before {
+    .timeline-container::before {
     content: "";
     position: absolute;
     left: 50%;
     top: 0;
-    bottom: 50px;
+    height: calc(100% - 60px); /* 👈 matches timeline-end height */
     width: 4px;
     background: #444;
     transform: translateX(-50%);
-}
+    }
 
     /* TOP START DOT */
     .timeline-container::after {
