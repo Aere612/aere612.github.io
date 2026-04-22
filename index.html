@@ -126,6 +126,7 @@
         z-index: 2;
         cursor: pointer;
         transition: all 0.3s ease;
+        pointer-events: auto;
     }
 
     .circle img {
@@ -471,8 +472,8 @@
             </div>
         </div>
 
-        <div class="circle tutorial-target">
-            <img src="images/Birth.jpg">
+        <div class="circle tutorial-target" id="tutorialCircle">
+        <img src="images/Birth.jpg">
         </div>
 
         <div class="tutorial-hint">
@@ -660,5 +661,42 @@
         </a>
 
     </section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const circle = document.getElementById("tutorialCircle");
+    const hint = document.querySelector(".tutorial-hint");
+
+    if (!circle || !hint) return;
+
+    if (localStorage.getItem("tutorialSeen") === "true") {
+        hint.remove();
+        circle.classList.remove("tutorial-target");
+        return;
+    }
+
+    let triggered = false;
+
+    function hideTutorial() {
+        if (triggered) return;
+        triggered = true;
+
+        localStorage.setItem("tutorialSeen", "true");
+
+        hint.style.transition = "opacity 0.4s ease";
+        hint.style.opacity = "0";
+
+        circle.classList.remove("tutorial-target");
+
+        setTimeout(() => {
+            hint.remove();
+        }, 400);
+    }
+
+    // IMPORTANT: use mouseover instead of pointerenter
+    circle.addEventListener("mouseover", hideTutorial);
+
+});
+</script>
 </body>
 </html>
