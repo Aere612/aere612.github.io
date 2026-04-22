@@ -324,16 +324,27 @@
 
     .overlay {
         position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px;
+        bottom: 10px;
+        left: 10px;
+
+        display: inline-block;
+        padding: 3px 8px;
+
+        background: rgba(0, 0, 0, 0.75);
         color: white;
-        background: linear-gradient(
-            to top,
-            rgba(0,0,0,0.85),
-            rgba(0,0,0,0.2),
-            transparent
-        );
+
+        border-radius: 6px;
+
+        font-size: 13px;
+        line-height: 1;
+
+        max-width: fit-content;
+    }
+
+    .overlay h3 {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1;
     }
 
     .footer-cta {
