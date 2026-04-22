@@ -669,7 +669,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!circle || !hint) return;
 
-    if (localStorage.getItem("tutorialSeen") === "true") {
+    // session-based check (resets when tab closes)
+    if (sessionStorage.getItem("tutorialSeen") === "true") {
         hint.remove();
         circle.classList.remove("tutorial-target");
         return;
@@ -681,7 +682,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (triggered) return;
         triggered = true;
 
-        localStorage.setItem("tutorialSeen", "true");
+        // ONLY for this tab session
+        sessionStorage.setItem("tutorialSeen", "true");
 
         hint.style.transition = "opacity 0.4s ease";
         hint.style.opacity = "0";
@@ -693,7 +695,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 400);
     }
 
-    // IMPORTANT: use mouseover instead of pointerenter
     circle.addEventListener("mouseover", hideTutorial);
 
 });
